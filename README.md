@@ -1,6 +1,8 @@
 # SHSnowflakesAnimation
-SHSnowflakesAnimation---雪花飘落动画-帧动画系列。雪花立体反转，可改变x,y,z三个不同方向反转效果-可自行拓展，雪花路线由贝塞尔曲线绘制而成-可自行更改路线
 
+SHSnowflakesAnimation
+
+雪花飘落动画-帧动画系列。雪花立体反转，可改变x,y,z三个不同方向反转效果-可自行拓展，雪花路线由贝塞尔曲线绘制而成-可自行更改路线
 
 
 
