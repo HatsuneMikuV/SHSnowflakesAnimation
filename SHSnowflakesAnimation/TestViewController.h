@@ -10,4 +10,6 @@
 
 @interface TestViewController : UIViewController
 
+@property (nonatomic, assign) NSInteger type;
+
 @end

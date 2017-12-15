@@ -50,9 +50,7 @@
     while (self.oldImage == image) {
         image = self.imageArr[arc4random()%4];
     }
-    
     self.oldImage = image;
-    
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
     [imageView setImage:image];
     imageView.layer.shouldRasterize = YES;
@@ -137,7 +135,7 @@
         controlX2 = control;
     }
     
-    CGFloat startY    = 0;
+    CGFloat startY    = -5;
     CGFloat controlY1 = arc4random()%height + 5;
     CGFloat controlY2 = arc4random()%height + 5;
     if (controlY1 + controlY2 > self.height + 5) {
@@ -160,6 +158,10 @@
 #pragma mark   ==============定时器==============
 - (void)startOrEndAnimation:(BOOL)startOrEnd {
     if (startOrEnd) {
+        if (self.raderColor) {
+            [self radAnimation:self.raderColor];
+            return;
+        }
         if (self.timer) {
             return;
         }else {
@@ -169,9 +171,15 @@
             
             dispatch_time_t start = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC));
             
-            CGFloat time = self.ringEmitter ? 0.5:0.2;
-            
-            uint64_t interval = (uint64_t)(time * NSEC_PER_SEC);
+            uint64_t interval;
+            if (self.ringEmitter) {
+                NSTimeInterval time = self.repetition > 0 ? self.repetition:2;
+                interval = (uint64_t)(time * NSEC_PER_SEC);
+            }else {
+                NSInteger count = self.count > 0 ? self.count:10;
+                interval = (uint64_t)( (1.0 / count) * NSEC_PER_SEC);
+            }
+
             dispatch_source_set_timer(self.timer, start, interval, 0);
             
             dispatch_source_set_event_handler(self.timer, ^{
@@ -185,6 +193,13 @@
             dispatch_resume(self.timer);
         }
     }else {
+        if (self.raderColor) {
+            [self.layer.sublayers enumerateObjectsUsingBlock:^(CALayer * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                [obj removeAllAnimations];
+            }];
+            [self.layer.sublayers makeObjectsPerformSelector:@selector(removeFromSuperlayer)];
+            return;
+        }
         if (self.timer) {
             dispatch_cancel(self.timer);
             self.timer = nil;
@@ -219,25 +234,25 @@
     ring.lifetime       =  2;
     
     ring.color          = [UIColor whiteColor].CGColor;
-    //    ring.contents       = (id)[UIImage imageNamed:@"DazTriangle"].CGImage;
-    //
-    //
-    //
-    //    CAEmitterCell *circle   =[CAEmitterCell emitterCell];
-    //    [circle setName:@"circle"];
-    //
-    //    circle.birthRate            = 10;
-    //    circle.emissionLongitude    = M_PI * 0.5;
-    //    circle.velocity             = 50;
-    //    circle.scale                = 0.5;
-    //    circle.scaleSpeed           =- 0.2;
-    //    circle.greenSpeed           =- 0.1;
-    //    circle.redSpeed             =- 0.2;
-    //    circle.blueSpeed            =  0.1;
-    //    circle.alphaSpeed           =- 0.2;
-    //    circle.lifetime             =  4;
-    //    circle.color                = [UIColor whiteColor].CGColor;
-    //    circle.contents             = (id)[UIImage imageNamed:@"DazRing"].CGImage;
+    ring.contents       = (id)[UIImage imageNamed:@"DazTriangle"].CGImage;
+    
+    
+    
+    CAEmitterCell *circle   =[CAEmitterCell emitterCell];
+    [circle setName:@"circle"];
+    
+    circle.birthRate            = 10;
+    circle.emissionLongitude    = M_PI * 0.5;
+    circle.velocity             = 50;
+    circle.scale                = 0.5;
+    circle.scaleSpeed           =- 0.2;
+    circle.greenSpeed           =- 0.1;
+    circle.redSpeed             =- 0.2;
+    circle.blueSpeed            =  0.1;
+    circle.alphaSpeed           =- 0.2;
+    circle.lifetime             =  4;
+    circle.color                = [UIColor whiteColor].CGColor;
+    circle.contents             = (id)[UIImage imageNamed:@"DazRing"].CGImage;
     
     
     CAEmitterCell *star         = [CAEmitterCell emitterCell];
@@ -256,7 +271,7 @@
     star.lifetime               = 2;
     
     star.color = [[UIColor whiteColor] CGColor];
-    star.contents = (id) [[UIImage imageNamed:@""] CGImage];
+    star.contents = (id) [[UIImage imageNamed:@"DazStarOutline"] CGImage];
     
     self.ringEmitter.emitterCells = @[ring];
     ring.emitterCells   = @[star];
@@ -264,8 +279,12 @@
     
     [self startOrEndAnimation:YES];
 }
+- (void)manualOperationTouchAtPosition:(CGPoint)position {
+    [self startOrEndAnimation:NO];
+    [self touchAtPosition:position];
+}
 
-- (void) touchAtPosition:(CGPoint)position{
+- (void) touchAtPosition:(CGPoint)position {
     CABasicAnimation *burst = [CABasicAnimation animationWithKeyPath:@"emitterCells.ring.birthRate"];
     burst.fromValue            = [NSNumber numberWithFloat: 125.0];
     burst.toValue            = [NSNumber numberWithFloat: 0.0];
@@ -294,7 +313,7 @@
 //画雷达圆圈图
 -(void)addAnimationDelay:(int)time
 {
-    CGPoint centerPoint = CGPointMake(self.bounds.size.height / 2, self.bounds.size.width / 2);
+    CGPoint centerPoint = CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2);
     
     //使用贝塞尔画圆
     UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:centerPoint radius:10 startAngle:0 endAngle:2 * M_PI clockwise:YES];
@@ -311,7 +330,7 @@
     //雷达圈圈大小的动画
     CABasicAnimation *basicAnimation = [CABasicAnimation animation];
     basicAnimation.keyPath = @"path";
-    CGPoint center = CGPointMake(self.bounds.size.height / 2, self.bounds.size.width / 2);
+    CGPoint center = CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2);
     UIBezierPath *path1 = [UIBezierPath bezierPathWithArcCenter:center radius:10 startAngle:0 endAngle:2 * M_PI clockwise:YES];
     UIBezierPath *path2 = [UIBezierPath bezierPathWithArcCenter:center radius:SCREEN_WIDTH * 0.5 + 10 startAngle:0 endAngle:2 * M_PI clockwise:YES];
     basicAnimation.fromValue = (__bridge id _Nullable)(path1.CGPath);

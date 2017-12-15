@@ -13,12 +13,21 @@
 /**
  帧动画
  */
+/**
+ 秒帧数
+ */
+@property (nonatomic, assign) NSInteger count;
 - (void)startOrEndAnimation:(BOOL)startOrEnd;
 /**
  粒子动画
  */
+/**
+ N秒1次
+ */
+@property (nonatomic, assign) NSTimeInterval repetition;
 - (void)touchLayer;
-
+//手动执行
+- (void)manualOperationTouchAtPosition:(CGPoint)position;
 /**
  咻咻动画
  */

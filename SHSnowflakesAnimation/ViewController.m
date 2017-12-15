@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "TestViewController.h"
 
 
 @interface ViewController ()<UITableViewDataSource,UITableViewDelegate>
@@ -34,7 +35,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row < self.dataArr.count) {
-        
+        TestViewController *VC = [[TestViewController alloc] init];
+        VC.type = indexPath.row;
+        VC.title = [NSString stringWithFormat:@"%@",self.dataArr[indexPath.row]];
+        [self.navigationController pushViewController:VC animated:YES];
     }
 }
 #pragma mark -
