@@ -10,9 +10,19 @@
 
 @interface AnimationView : UIView
 
-//1s   产生的个数。默认10
-@property (nonatomic, assign) NSInteger count;
-
+/**
+ 帧动画
+ */
 - (void)startOrEndAnimation:(BOOL)startOrEnd;
+/**
+ 粒子动画
+ */
+- (void)touchLayer;
+
+/**
+ 咻咻动画
+ */
+- (void)radAnimation:(UIColor *)color;
 
 @end
+

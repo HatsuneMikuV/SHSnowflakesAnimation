@@ -28,12 +28,10 @@
     
     self.navigationItem.title = @"❄️❄️❄️";
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"❄️关闭" style:UIBarButtonItemStylePlain target:self action:@selector(startOrEnd:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"❄️" style:UIBarButtonItemStylePlain target:self action:@selector(startOrEnd:)];
     
     
     AnimationView *ani = [[AnimationView alloc] initWithFrame:self.view.bounds];
-    
-    ani.count = 24;
     
     [self.view addSubview:ani];
     
@@ -44,11 +42,17 @@
 }
 
 - (void)startOrEnd:(UIBarButtonItem *)bar {
-    if ([bar.title isEqualToString:@"❄️启动"]) {
-        bar.title = @"❄️关闭";
+    if ([bar.title isEqualToString:@"❄️"]) {
+        bar.title = @"粒子动画";
         [self.animationView startOrEndAnimation:YES];
+    }else if ([bar.title isEqualToString:@"粒子动画"]){
+        bar.title = @"咻咻/雷达";
+
+    }else if ([bar.title isEqualToString:@"咻咻/雷达"]){
+        bar.title = @"全部";
+
     }else {
-        bar.title = @"❄️启动";
+        bar.title = @"❄️";
         [self.animationView startOrEndAnimation:NO];
     }
 }
