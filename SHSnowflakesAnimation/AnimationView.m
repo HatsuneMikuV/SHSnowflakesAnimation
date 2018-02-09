@@ -364,6 +364,13 @@
     [shapeLayer addAnimation:group forKey:nil];
     
 }
+
++ (void)shakeView:(UIView *_Nonnull)shakeView duration:(NSTimeInterval)duration range:(CGFloat)width direction:(SHShakeViewDirection)direction completion:(void (^ __nullable)(void))completion {
+    if (shakeView) {
+        
+    }
+}
+
 @end
 
 
