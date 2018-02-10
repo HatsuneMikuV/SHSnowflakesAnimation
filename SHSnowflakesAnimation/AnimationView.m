@@ -368,10 +368,49 @@
 + (void)shakeView:(UIView *_Nonnull)shakeView duration:(NSTimeInterval)duration range:(CGFloat)width direction:(SHShakeViewDirection)direction completion:(void (^ __nullable)(void))completion {
     if (shakeView) {
         CGFloat widthRel  = width > 0 ? width : 8;
+        
         NSTimeInterval time = duration > 0 ? duration * 0.5 : 0.05;
+        
         CABasicAnimation *shake = [CABasicAnimation animationWithKeyPath:@"transform.translation.x"];
+        //默认左右 SHShakeViewDirectionLeftRight
         shake.fromValue = [NSNumber numberWithFloat:-widthRel];
         shake.toValue = [NSNumber numberWithFloat:widthRel];
+        
+        if (direction == SHShakeViewDirectionLeftUp) {
+            shake.fromValue = [NSNumber numberWithFloat:-widthRel];
+            shake.toValue = [NSNumber numberWithFloat:widthRel];
+        }else if (direction == SHShakeViewDirectionLeftDown) {
+            shake.fromValue = [NSNumber numberWithFloat:-widthRel];
+            shake.toValue = [NSNumber numberWithFloat:widthRel];
+        }else if (direction == SHShakeViewDirectionRightLeft) {
+            shake.fromValue = [NSNumber numberWithFloat:-widthRel];
+            shake.toValue = [NSNumber numberWithFloat:widthRel];
+        }else if (direction == SHShakeViewDirectionRightUp) {
+            shake.fromValue = [NSNumber numberWithFloat:-widthRel];
+            shake.toValue = [NSNumber numberWithFloat:widthRel];
+        }else if (direction == SHShakeViewDirectionRightDown) {
+            shake.fromValue = [NSNumber numberWithFloat:-widthRel];
+            shake.toValue = [NSNumber numberWithFloat:widthRel];
+        }else if (direction == SHShakeViewDirectionUpDown) {
+            shake.fromValue = [NSNumber numberWithFloat:-widthRel];
+            shake.toValue = [NSNumber numberWithFloat:widthRel];
+        }else if (direction == SHShakeViewDirectionUpLeft) {
+            shake.fromValue = [NSNumber numberWithFloat:-widthRel];
+            shake.toValue = [NSNumber numberWithFloat:widthRel];
+        }else if (direction == SHShakeViewDirectionUpRight) {
+            shake.fromValue = [NSNumber numberWithFloat:-widthRel];
+            shake.toValue = [NSNumber numberWithFloat:widthRel];
+        }else if (direction == SHShakeViewDirectionDownUp) {
+            shake.fromValue = [NSNumber numberWithFloat:-widthRel];
+            shake.toValue = [NSNumber numberWithFloat:widthRel];
+        }else if (direction == SHShakeViewDirectionDownLeft) {
+            shake.fromValue = [NSNumber numberWithFloat:-widthRel];
+            shake.toValue = [NSNumber numberWithFloat:widthRel];
+        }else if (direction == SHShakeViewDirectionDownRight) {
+            shake.fromValue = [NSNumber numberWithFloat:-widthRel];
+            shake.toValue = [NSNumber numberWithFloat:widthRel];
+        }
+        
         shake.duration = time;//执行时间
         shake.autoreverses = YES; //是否重复
         shake.repeatCount = 2;//次数
