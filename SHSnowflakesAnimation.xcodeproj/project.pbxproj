@@ -14,6 +14,7 @@
 		7C44E5BD1F46CA030002ABF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C44E5BC1F46CA030002ABF0 /* Assets.xcassets */; };
 		7C44E5C01F46CA030002ABF0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C44E5BE1F46CA030002ABF0 /* LaunchScreen.storyboard */; };
 		7C44E5C91F46CBF80002ABF0 /* AnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C44E5C81F46CBF80002ABF0 /* AnimationView.m */; };
+		7C7A35A1202E88F1004766A9 /* ShakeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7A35A0202E88F1004766A9 /* ShakeViewController.m */; };
 		7CC9725C1FE36B9E007A0D8E /* UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC9725B1FE36B9E007A0D8E /* UIView+Layout.m */; };
 		7CC9725F1FE3708B007A0D8E /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC9725E1FE3708B007A0D8E /* TestViewController.m */; };
 /* End PBXBuildFile section */
@@ -31,6 +32,8 @@
 		7C44E5C11F46CA030002ABF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C44E5C71F46CBF80002ABF0 /* AnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationView.h; sourceTree = "<group>"; };
 		7C44E5C81F46CBF80002ABF0 /* AnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationView.m; sourceTree = "<group>"; };
+		7C7A359F202E88F1004766A9 /* ShakeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShakeViewController.h; sourceTree = "<group>"; };
+		7C7A35A0202E88F1004766A9 /* ShakeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShakeViewController.m; sourceTree = "<group>"; };
 		7CC9725A1FE36B9E007A0D8E /* UIView+Layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Layout.h"; sourceTree = "<group>"; };
 		7CC9725B1FE36B9E007A0D8E /* UIView+Layout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Layout.m"; sourceTree = "<group>"; };
 		7CC9725D1FE3708B007A0D8E /* TestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
@@ -71,6 +74,8 @@
 				7C44E5B41F46CA030002ABF0 /* AppDelegate.m */,
 				7C44E5B61F46CA030002ABF0 /* ViewController.h */,
 				7C44E5B71F46CA030002ABF0 /* ViewController.m */,
+				7C7A359F202E88F1004766A9 /* ShakeViewController.h */,
+				7C7A35A0202E88F1004766A9 /* ShakeViewController.m */,
 				7CC9725D1FE3708B007A0D8E /* TestViewController.h */,
 				7CC9725E1FE3708B007A0D8E /* TestViewController.m */,
 				7C44E5C71F46CBF80002ABF0 /* AnimationView.h */,
@@ -167,6 +172,7 @@
 			files = (
 				7CC9725F1FE3708B007A0D8E /* TestViewController.m in Sources */,
 				7C44E5B81F46CA030002ABF0 /* ViewController.m in Sources */,
+				7C7A35A1202E88F1004766A9 /* ShakeViewController.m in Sources */,
 				7C44E5C91F46CBF80002ABF0 /* AnimationView.m in Sources */,
 				7C44E5B51F46CA030002ABF0 /* AppDelegate.m in Sources */,
 				7CC9725C1FE36B9E007A0D8E /* UIView+Layout.m in Sources */,

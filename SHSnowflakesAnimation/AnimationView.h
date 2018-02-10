@@ -53,12 +53,16 @@ typedef NS_OPTIONS(NSUInteger, SHShakeViewDirection) {
  抖动动画
 
  @param shakeView 抖动视图
- @param duration 抖动时间
- @param width 抖动幅度
- @param direction 抖动方向
+ @param duration 抖动时间  默认0.1 (此时间为动画总时间)
+ @param width 抖动幅度   默认8.f  （斜方向__默认为等边直角三角形斜边长）
+ @param direction 抖动方向  默认左右
  @param completion 完成
  */
-+ (void)shakeView:(UIView *_Nonnull)shakeView duration:(NSTimeInterval)duration range:(CGFloat)width direction:(SHShakeViewDirection)direction completion:(void (^ __nullable)(void))completion;
++ (void)shakeView:(UIView *_Nonnull)shakeView
+         duration:(NSTimeInterval)duration
+            range:(CGFloat)width
+        direction:(SHShakeViewDirection)direction
+       completion:(void (^ __nullable)(void))completion;
 
 @end
 

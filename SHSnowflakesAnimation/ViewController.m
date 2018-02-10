@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "TestViewController.h"
+#import "ShakeViewController.h"
 
 
 @interface ViewController ()<UITableViewDataSource,UITableViewDelegate>
@@ -23,6 +24,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
+    self.view.backgroundColor = [UIColor whiteColor];
+    
     self.navigationController.navigationBar.translucent = NO;
     
     self.navigationItem.title = @"动画";
@@ -35,6 +38,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row < self.dataArr.count) {
+        if (indexPath.row == 3) {
+            ShakeViewController *VC = [[ShakeViewController alloc] init];
+            [self.navigationController pushViewController:VC animated:YES];
+            return;
+        }
         TestViewController *VC = [[TestViewController alloc] init];
         VC.type = indexPath.row;
         VC.title = [NSString stringWithFormat:@"%@",self.dataArr[indexPath.row]];
@@ -61,7 +69,7 @@
 #pragma mark   ==============lazy==============
 - (NSArray *)dataArr {
     if (!_dataArr) {
-        _dataArr = @[@"雪花帧动画---立体旋转",@"粒子动画",@"咻咻/雷达"];
+        _dataArr = @[@"雪花帧动画---立体旋转",@"粒子动画",@"咻咻/雷达",@"抖动动画"];
     }
     return _dataArr;
 }
